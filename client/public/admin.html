@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMarket - Вход в админ-панель</title>
+    <style>
+        :root {
+            --primary-orange: #FF8C00;
+            --dark-orange: #E67E00;
+            --primary-green: #2ECC71;
+            --dark-green: #27AE60;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(46, 204, 113, 0.1) 100%);
+        }
+
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-green));
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: var(--dark-gray);
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .logo span {
+            color: var(--primary-green);
+        }
+
+        .logo p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-orange);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .remember-forgot a {
+            color: var(--primary-orange);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .remember-forgot a:hover {
+            color: var(--dark-orange);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-green));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(90deg, var(--dark-orange), var(--dark-green));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            color: #777;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>Fresh<span>Market</span></h1>
+            <p>Административная панель</p>
+        </div>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Логин</label>
+                <input type="text" id="username" placeholder="Введите ваш логин" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="Введите ваш пароль" required>
+            </div>
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox"> Запомнить меня
+                </label>
+                <a href="#">Забыли пароль?</a>
+            </div>
+            <button type="submit" class="login-btn">Войти</button>
+        </form>
+        <p class="footer-text">© 2023 FreshMarket. Все права защищены.</p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Здесь должна быть логика авторизации
+            console.log('Логин:', username, 'Пароль:', password);
+
+            // Перенаправление на страницу заказов после успешной авторизации
+            window.location.href = 'orders.html';
+        });
+    </script>
+</body>
+
+</html>
