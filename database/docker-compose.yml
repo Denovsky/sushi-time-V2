@@ -1,6 +1,9 @@
+version: '1.1'
+
 services:
   postgres:
     image: postgres:15
+    container_name: sushitime-postgres
     environment:
       POSTGRES_PASSWORD: "12345r"
     volumes:
@@ -8,5 +11,7 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - "5505:5432"
+
 volumes:
   pgdata:
+    name: sushitimedb_pgdata

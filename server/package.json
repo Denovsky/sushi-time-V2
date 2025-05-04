@@ -1,26 +1,23 @@
 {
   "name": "sushitimewebclient",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "js_run_esm": "NODE_OPTIONS='--import ts-node/esm' node src/app.js",
-    "js_run_test": "NODE_OPTIONS='--import ts-node/register' node src/app.js",
-    "ts_run": "npx tsx src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "dev": "NODE_OPTIONS='--import tsx' node src/app.js",
+    "ts-check": "tsc --noEmit"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "express-validator": "^7.2.1",
-    "pg": "^8.14.1",
+    "pg": "^8.15.6",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.3",
     "@types/pg": "^8.11.14",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }
 }
