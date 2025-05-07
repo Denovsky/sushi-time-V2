@@ -1,56 +1,48 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { useCartStore } from '@/store/cart';
+import { computed } from 'vue';
+import { Product } from '@/store/interfaces';
 
-interface Product {
-    id: number,
-    title: String,
-    description: String,
-    price: number,
-    weight: number,
-    item_discount: number,
-    // attributes: JSON
-}
-
-defineProps<{
-  product: Product
+const props = defineProps<{
+  product: Product;
 }>();
 
 const cart = useCartStore();
-const { getItemByID } = storeToRefs(cart)
+
+const productQuantity = computed(() => cart.getQuantityByID(props.product.id))
 
 </script>
 
 <template>
     <div class="product-card">
-      <div v-if="product.item_discount!==0" class="badge">{{ `-${product.item_discount}%` }}</div>
+      <div v-if="props.product.item_discount!==0" class="badge">{{ `-${props.product.item_discount}%` }}</div>
       <div class="product-image">
           <img src="https://images.unsplash.com/photo-1589927986089-35812388d1f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
               alt="Апельсины">
       </div>
       <div class="product-info">
-          <h3 class="product-title">{{ product.title }}</h3>
-          <p class="product-description">{{ product.description }}</p>
+          <h3 class="product-title">{{ props.product.title }}</h3>
+          <p class="product-description">{{ props.product.description }}</p>
           <div class="product-price">
-                <div v-if="product.item_discount!==0">
-                    <span class="old-price">{{ product.price }} ₽</span>
-                    <span class="price">{{ product.price*product.item_discount/100 }}  ₽</span>
+                <div v-if="props.product.item_discount!==0">
+                    <span class="old-price">{{ props.product.price }} ₽</span>
+                    <span class="price">{{ props.product.price*props.product.item_discount/100 }}  ₽</span>
                 </div>
                 <div v-else>
-                    <span class="price">{{ product.price }}  ₽</span>
+                    <span class="price">{{ props.product.price }}  ₽</span>
                 </div>
 
-                <div v-if="getQuantityByID(product.id)!==undefined" class="quantity-controls active">
+                <div v-if="productQuantity > 0" class="quantity-controls active">
                     <button class="quantity-btn minus-btn">
                         <i class="fas fa-minus"></i>
                     </button>
-                    <div class="quantity-display">{{ }}</div>
+                    <div class="quantity-display">{{ productQuantity }}</div>
                     <button class="quantity-btn plus-btn">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
 
-                <button v-else @click="cart.addItem(product)" class="add-to-cart" style="display: none;">
+                <button v-else @click="cart.addItem(props.product)" class="add-to-cart" style="display: none;">
                     <i class="fas fa-shopping-cart"></i>
                 </button>
           </div>
@@ -59,11 +51,11 @@ const { getItemByID } = storeToRefs(cart)
 </template>
 
 <style scoped>
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
 
         .product-card {
             background-color: var(--white);

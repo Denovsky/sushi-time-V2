@@ -5,6 +5,7 @@ GRANT ALL PRIVILEGES ON DATABASE sushitimedb TO relanoe_db_user;
 \c sushitimedb postgres
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO relanoe_db_user;
+CREATE SEQUENCE custom_seq INCREMENT 5 START 100;
 
 CREATE TABLE users (
    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -27,6 +28,7 @@ CREATE TABLE products (
 	weight INTEGER,
 	status INTEGER NOT NULL DEFAULT 0, -- 0: available, 1: not available, 2: deleted
 	item_discount INTEGER NOT NULL DEFAULT 0,
+	z_index INTEGER NOT NULL DEFAULT nextval('custom_seq'),
     created_at TIMESTAMP DEFAULT NOW(),
     changed_at TIMESTAMP DEFAULT NOW()
 	-- attributes JSONB, -- sorting
@@ -38,10 +40,14 @@ CREATE TABLE popular_products (
 	FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
+ALTER SEQUENCE custom_seq RESTART WITH 50;
+
 CREATE TABLE categories (
 	id SERIAL PRIMARY KEY,
 	title TEXT NOT NULL,
-	parent_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+	parent_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+	z_index INTEGER NOT NULL DEFAULT nextval('custom_seq'),
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE product_categories (

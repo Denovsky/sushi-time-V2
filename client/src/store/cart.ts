@@ -85,5 +85,13 @@ export const useCartStore = defineStore('cart', {
             this.$patch(cartData);
             localStorage.removeItem('cart');
         }
+    },
+    getters: {
+        getQuantityByID: (state) => {
+            return (id: number) => {
+                const item = state.items.get(id);
+                return item ? item.quantity : 0;
+            }
+        }
     }
 });

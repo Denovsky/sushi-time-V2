@@ -1,6 +1,6 @@
 import express from 'express';
 import userController from './controllers/userController.js';
-import productController from './controllers/productController.ts';
+import productController from './controllers/productController.js';
 import categoryController from './controllers/categoryController.js';
 
 const router = express.Router();
@@ -11,7 +11,7 @@ router.put('/users/:id', userController.updateUser);
 router.delete('/users/:id', userController.deleteUser);
 
 router.get('/products', productController.getProducts);
-// router.get('/products/:category_id', productController.getProductsByCategory);
+router.get('/products-categories', productController.getProductsCategories);
 router.post('/products', productController.createProduct);
 router.put('/products/:id', productController.updateProduct);
 router.delete('/products/:id', productController.deleteProduct);

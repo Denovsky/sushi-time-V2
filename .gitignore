@@ -4,6 +4,8 @@ logs
 *.out
 *.dump
 .env
+.pids
+*.pids
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

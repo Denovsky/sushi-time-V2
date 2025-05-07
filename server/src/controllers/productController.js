@@ -1,16 +1,14 @@
-import { Request, Response } from 'express';
-import { Product, Category } from '../models/interfaces.ts';
 import pool from '../config/db.js';
 
 
-// exports.getProducts = async (req, res) => {
-//     try {
-//         const result = await pool.query('SELECT * FROM products;');
-//         res.status(200).json(result.rows);
-//     } catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// };
+const getProducts = async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM products;');
+        res.status(200).json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
 
 // exports.getProductsByCategory = async (req, res) => {
 //     const { category_id } = req.params;
@@ -22,18 +20,45 @@ import pool from '../config/db.js';
 //     }
 // };
 
-const getProducts = async (req, res) => {
+const getProductsCategories = async (req, res) => {
     try {
-        let result = await pool.query('SELECT * FROM categories;');
-        const items = new Map<Category, Product[]>();
-        result.rows.forEach(async category => {
-            result = await pool.query('SELECT id FROM categories WHERE title = $1;', [category.title]);
-            console.log()
-            result = await pool.query('SELECT p.* FROM products p JOIN product_categories pc ON p.id = pc.product_id WHERE pc.category_id = $1', [result.rows[0].id]);
-            items.set(category, result.rows);
+        const result = await pool.query(`
+            SELECT
+                c.id AS category_id,
+                c.title AS category_title,
+                c.z_index AS category_z_index,
+                p.id AS product_id,
+                p.title AS product_title,
+                p.z_index AS product_z_index,
+                p.price,
+                p.description,
+                p.weight
+            FROM 
+                categories c
+            JOIN 
+                product_categories pc ON c.id = pc.category_id
+            JOIN 
+                products p ON pc.product_id = p.id
+            ORDER BY
+                c.z_index ASC,
+                p.z_index ASC
+        `);
+        const items = new Map();
+        result.rows.forEach(row => {
+            const category = row.category_title;
+            if (!items.has(category)) {
+                items.set(category, []);
+            }
+            items.get(category).push({
+                id: row.product_id,
+                title: row.product_title,
+                price: row.price,
+                description: row.description,
+                weight: row.weight
+            });
         });
         console.log(items)
-        res.status(200).json(items);
+        res.status(200).json(Object.fromEntries(items));
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -74,6 +99,7 @@ const deleteProduct = async (req, res) => {
 
 export default {
     getProducts,
+    getProductsCategories,
     createProduct,
     updateProduct,
     deleteProduct

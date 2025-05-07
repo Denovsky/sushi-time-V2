@@ -7,7 +7,8 @@ export interface Product {
     status: 0 | 1 | 2,
     item_discount: number,
     created_at: Date,
-    changed_at: Date
+    changed_at: Date,
+    z_index: number
 }
 
 export interface CartItem {

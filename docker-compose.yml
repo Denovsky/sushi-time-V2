@@ -1,0 +1,10 @@
+version: '1.0'
+services:
+  server:
+    build: ./server
+    container_name: api_backend
+    ports:
+      - '5506:5506'
+    volumes:
+      - ./server:/app
+      - ./app/node_modules

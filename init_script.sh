@@ -38,7 +38,7 @@ fi
 
 if [ -d "node_modules" ]; then
     nohup npm run dev >> server.log 2>&1 &
-    echo "$! : server" >> "../$PID_FILE"
+    echo "$! : server" > "../$PID_FILE"
 fi
 
 cd ../client/

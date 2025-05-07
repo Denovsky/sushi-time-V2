@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "NODE_OPTIONS='--import tsx' node src/app.js",
-    "ts-check": "tsc --noEmit"
+    "dev": "nodemon src/app.js",
+    "test": "echo 'start and dev in usage'"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
@@ -17,7 +17,6 @@
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.3",
     "@types/pg": "^8.11.14",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "nodemon": "^3.1.10"
   }
 }
