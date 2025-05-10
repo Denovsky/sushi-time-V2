@@ -10,16 +10,6 @@ const getProducts = async (req, res) => {
     }
 };
 
-// exports.getProductsByCategory = async (req, res) => {
-//     const { category_id } = req.params;
-//     try {
-//         const result = await pool.query('SELECT p.* FROM products p JOIN product_categories pc ON p.id = pc.product_id WHERE pc.category_id = $1', [category_id]);
-//         res.status(200).json(result.rows);
-//     } catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// };
-
 const getProductsCategories = async (req, res) => {
     try {
         const result = await pool.query(`
@@ -32,7 +22,9 @@ const getProductsCategories = async (req, res) => {
                 p.z_index AS product_z_index,
                 p.price,
                 p.description,
-                p.weight
+                p.weight,
+                p.status,
+                p.item_discount
             FROM 
                 categories c
             JOIN 
@@ -54,11 +46,39 @@ const getProductsCategories = async (req, res) => {
                 title: row.product_title,
                 price: row.price,
                 description: row.description,
-                weight: row.weight
+                weight: row.weight,
+                status: row.status,
+                item_discount: row.item_discount
             });
         });
         console.log(items)
         res.status(200).json(Object.fromEntries(items));
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+const getPopularProduct = async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT 
+                pp.id,
+                p.id,
+                p.title,
+                p.z_index,
+                p.price,
+                p.description,
+                p.weight,
+                p.status,
+                p.item_discount
+            FROM
+                products p
+            JOIN
+                popular_products pp ON p.id = pp.product_id
+            ORDER BY
+                p.z_index ASC;
+        `);
+        res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -100,6 +120,7 @@ const deleteProduct = async (req, res) => {
 export default {
     getProducts,
     getProductsCategories,
+    getPopularProduct,
     createProduct,
     updateProduct,
     deleteProduct

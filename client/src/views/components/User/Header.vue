@@ -3,7 +3,7 @@
     <div class="header-container">
         <a href="#" class="logo">
             <i class="fas fa-shopping-basket floating"></i>
-            FreshMarket
+            Sushi-Time
         </a>
         <button class="mobile-menu-btn" id="mobileMenuBtn">
             <i class="fas fa-bars"></i>

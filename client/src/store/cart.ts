@@ -25,10 +25,8 @@ export const useCartStore = defineStore('cart', {
         addItem(product: Product) {
             const cartProduct = this.items.get(product.id)
             if (cartProduct) {
-                console.log('No')
                 cartProduct.quantity++;
             } else {
-                console.log('Yes')
                 this.items.set(product.id, {
                     product: product,
                     quantity: 1

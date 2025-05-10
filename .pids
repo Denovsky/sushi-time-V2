@@ -1,2 +1,33 @@
-121240 : server
-121241 : client
+115511 : server
+115512 : client
+
+
+ps -a
+    PID TTY          TIME CMD
+   2261 tty2     00:00:00 gnome-session-b
+ 113726 pts/2    00:00:19 postman
+ 113729 pts/2    00:00:00 postman
+ 113730 pts/2    00:00:00 postman
+ 113770 pts/2    00:00:10 postman
+ 113781 pts/2    00:00:02 postman
+ 113803 pts/2    00:00:39 postman
+ 121108 pts/2    00:00:00 ps
+
+ps -a
+    PID TTY          TIME CMD
+   2261 tty2     00:00:00 gnome-session-b
+ 113726 pts/2    00:00:19 postman
+ 113729 pts/2    00:00:00 postman
+ 113730 pts/2    00:00:00 postman
+ 113770 pts/2    00:00:10 postman
+ 113781 pts/2    00:00:02 postman
+ 113803 pts/2    00:00:40 postman
+ 121240 pts/2    00:00:00 npm run dev
+ 121241 pts/2    00:00:00 npm run dev
+ 121263 pts/2    00:00:00 sh
+ 121264 pts/2    00:00:00 sh
+ 121265 pts/2    00:00:00 node
+ 121266 pts/2    00:00:00 node
+ 121289 pts/2    00:00:00 node
+ 121300 pts/2    00:00:00 esbuild
+ 121320 pts/2    00:00:00 ps

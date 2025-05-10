@@ -1,17 +1,19 @@
 <script setup lang="ts">
-const props = defineProps<{
+
+defineProps<{
   category: string;
 }>();
 </script>
+
 <template>
-    <div class="main-container">
-        <div class="section-title">
-            <h2>{{ props.category }}</h2>
-        </div>
-        <div class="products-grid">
-          <slot />
-        </div>
+  <div class="main-container">
+    <div class="section-title">
+      <h2>{{ category }}</h2>
     </div>
+    <div class="products-grid">
+      <slot />
+    </div>
+  </div>
 </template>
 <style scoped>
 .main-container {

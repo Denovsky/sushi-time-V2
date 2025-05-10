@@ -2,7 +2,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <a href="#"><i class="fas fa-shopping-basket"></i>FreshMarket</a>
+                <a href="#"><i class="fas fa-shopping-basket"></i>Sushi-Time</a>
             </div>
             <div class="footer-column">
                 <h3>Магазин</h3>
@@ -26,8 +26,8 @@
                 <h3>Контакты</h3>
                 <ul>
                     <li><a href="tel:+78005553535">8 (800) 555-35-35</a></li>
-                    <li><a href="mailto:info@freshmarket.ru">info@freshmarket.ru</a></li>
-                    <li><a href="#">Москва, ул. Свежая, 15</a></li>
+                    <li><a href="mailto:info@sushitime.ru">info@sushitime.ru</a></li>
+                    <li><a href="#">Москва, ул. Роллов, 15</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -39,7 +39,7 @@
                 </ul>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 FreshMarket. Все права защищены.</p>
+                <p>&copy; 2025 Sushi-Time. Все права защищены.</p>
             </div>
         </div>
     </footer>
