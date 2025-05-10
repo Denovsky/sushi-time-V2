@@ -5,7 +5,7 @@ import { ref } from 'vue';
 const text = ref("")
 
 function editPhone(event) {
-    text = event.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+    text.value = event.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
 }
 </script>
 <template>

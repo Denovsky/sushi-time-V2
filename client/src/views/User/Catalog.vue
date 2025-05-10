@@ -17,7 +17,7 @@ const error = ref(null)
 async function fetchData() {
   try {
     isLoading.value = true
-    const response = await fetch('http://localhost:3000/api/products-categories')
+    const response = await fetch(`http://localhost:3000/api/products-categories`)
     if (!response.ok) throw new Error('Network error')
 
     const data = await response.json()

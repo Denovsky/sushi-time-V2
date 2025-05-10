@@ -14,7 +14,7 @@ services:
     build: ./server
     container_name: sushitime-server
     ports:
-      - '5506:5506'
+      - '3000:5506'
     expose:
       - "5506"
     depends_on:
@@ -24,18 +24,18 @@ services:
     volumes:
       - ./server:/app
       - /server/node_modules
-  client:
-    build: ./client
-    container_name: sushitime-client
-    depends_on:
-      - server
-    ports:
-      - "5507:5173"
-    working_dir: /app
-    command: npm run dev
-    volumes:
-      - .client:/app
-      - /server/node_modules
+  # client:
+  #   build: ./client
+  #   container_name: sushitime-client
+  #   depends_on:
+  #     - server
+  #   ports:
+  #     - "5507:5173" 
+  #   working_dir: /app
+  #   command: npm run dev
+  #   volumes:
+  #     - .client:/app
+  #     - /client/node_modules
 
 volumes:
   pgdata:

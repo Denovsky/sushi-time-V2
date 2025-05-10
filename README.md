@@ -1,8 +1,12 @@
-init_script for dev launch. $USER must be contained in docker group, if not use this:
-./init_script.sh
-make sure script executable for you: chmod +x init_script.sh
+Database x Server:
+docker compose up -d
+Client:
+cd /client && npm run dev
 
-The main problem of init script is double shell create: command "newgrp" create a new shell each time, the correct way is "su - $USER"
+Use ./init_script.sh to add docker group to current user
+
+Database port 5505 for both localhost and inner docker network,
+Server port 3000 for localhost, 5506 for inner docker network.
 
 Plans:
 - done vue components
